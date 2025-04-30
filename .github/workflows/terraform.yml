@@ -1,0 +1,46 @@
+name: Terraform
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+
+
+    defaults:
+      run:
+        working-directory: ./modules/resource-group
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Generate Terraform Docs
+        uses: terraform-docs/gh-actions@v1
+        with:
+          working-dir: ./modules/resource-group
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
+
+      - name: Terraform Plan
+        run: terraform plan -input=false
+
+      - name: Terraform Validate
+        run: terraform validate

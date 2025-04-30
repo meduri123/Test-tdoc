@@ -1,0 +1,50 @@
+formatter: markdown table
+
+version: "0.20"
+
+output:
+  file: README.md
+  mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    ## Requirements
+
+    | Name | Version |
+    |------|---------|
+    | {{ range .Requirements }}{{ if .Name }}| {{ .Name }} | {{ .Version }} |{{ end }}{{ end }}
+
+    ## Providers
+
+    | Name | Version |
+    |------|---------|
+    | {{ range .Providers }}{{ if .Name }}| {{ .Name }} | {{ .Version }} |{{ end }}{{ end }}
+
+    ## Modules
+
+    No modules.
+
+    ## Resources
+
+    | Name | Type |
+    |------|------|
+    {{- range .Resources }}
+    | {{ .Name }} | {{ .Type }} |
+    {{- end }}
+
+    ## Inputs
+
+    | Name | Description | Type | Default | Required |
+    |------|-------------|------|---------|:--------:|
+    {{- range .Inputs }}
+    | {{ .Name }} | {{ .Description }} | {{ .Type }} | {{ if .Default }}{{ .Default }}{{ else }}null{{ end }} | {{ .Required }} |
+    {{- end }}
+
+    ## Outputs
+
+    | Name | Description |
+    |------|-------------|
+    {{- range .Outputs }}
+    | {{ .Name }} | {{ .Description }} |
+    {{- end }}
+
+    <!-- END_TF_DOCS -->
