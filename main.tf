@@ -1,5 +1,5 @@
 module "resource_group" {
-  source   = "../../modules/resource-group"
+  source   = "./modules/resource-group"
   name     = "example-rg"
   location = "East US"
   tags = {
