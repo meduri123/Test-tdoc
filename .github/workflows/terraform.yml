@@ -30,7 +30,7 @@ jobs:
       - name: Generate Terraform Docs
         uses: terraform-docs/gh-actions@v1
         with:
-          working-dir: ./modules/resource-group
+          working-dir: ./
           output-file: README.md
           output-method: inject
           git-push: "true"
