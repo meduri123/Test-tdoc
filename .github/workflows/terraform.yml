@@ -23,6 +23,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        
+      - name: Clean workspace
+        run: rm -rf .terraform/ || true  
 
       - name: Terraform Format
         run: terraform fmt -check -recursive
