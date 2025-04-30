@@ -35,7 +35,7 @@ jobs:
       - name: Generate Terraform Docs
         uses: terraform-docs/gh-actions@v1
         with:
-          working-dir: ./modules/resource_group  # Fix path to match your actual structure
+          #working-dir: ./modules/resource_group  # Fix path to match your actual structure
           output-file: README.md
           output-method: inject
           git-push: "true"
