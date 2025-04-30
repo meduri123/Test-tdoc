@@ -1,10 +1,5 @@
 name: Terraform
 
-permissions:
-  contents: write
-  id-token: write
-  pull-requests: read
-
 on:
   push:
     branches: [ "main" ]
@@ -56,8 +51,8 @@ jobs:
       #     git push || echo "No changes to push"
 
 
-      - name: Terraform Plan
-        run: terraform plan -input=false
+      # - name: Terraform Plan
+      #   run: terraform plan -input=false
 
       - name: Terraform Validate
         run: terraform validate
